@@ -18,21 +18,21 @@ select lower(name),count(tag_id)
         )
         and
       tags.id = tag_id
-  group by lower(name) order by count(tag_id) desc;
+  group by lower(name) order by count(tag_id) desc limit 30;
 SQL
 
 $SQL_URL = <<SQL
 select url,title,count(entry_id)
-  from entries join bookmarks
+  from entries as E join bookmarks as B
     on
-      entry_id in (select distinct entry_id from dailyranks
-        where date >= date(?) and date < date(?)
+      B.entry_id in (select distinct R.entry_id from dailyranks as R
+        where R.date >= date(?) and R.date < date(?)
       )
         and
-      time >= date(?) and time < date(?)
+      B.time >= date(?) and B.time < date(?)
         and
-      entry_id = entries.id
-  group by entry_id order by count(entry_id) desc;
+      B.entry_id = E.id
+  group by E.id order by count(E.id) desc limit 30;
 SQL
 
 $SQL_DOMAIN = <<SQL
