@@ -32,7 +32,7 @@ class EntrySchema < ActiveRecord::Migration
     add_index :bookmarks, :entry_id
 
     create_table(:bookmarktags) { |t|
-      t.column :bookmark_id, :integer
+      t.column :bookmark_id, :integer, :null => false
       t.column :tag_id, :integer, :null => false
     }
     add_index :bookmarktags, :bookmark_id
