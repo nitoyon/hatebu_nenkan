@@ -1,4 +1,3 @@
-
 #! ruby -Ku
 
 require 'open-uri'
