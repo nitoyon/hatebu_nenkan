@@ -1,6 +1,6 @@
 require 'optparse'
-require 'entry'
-require 'daily_rank'
+require 'crawler/entry'
+require 'crawler/daily_rank'
 
 
 count = 10

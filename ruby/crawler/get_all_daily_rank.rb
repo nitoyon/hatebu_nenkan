@@ -1,4 +1,4 @@
-require 'daily_rank'
+require 'crawler/daily_rank'
 
 #-----------------
 
