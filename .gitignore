@@ -1,3 +1,4 @@
+ruby/*~
 ruby/**/*~
 ruby/summary
-ruby/hatebu_nenkan.db
+ruby/hatebu_nenkan*.db*
