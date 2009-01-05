@@ -1,4 +1,5 @@
 require 'cgi'
+require 'date'
 
 date = Date.new(2005, 2)
 thismonth = Date.today - Date.today.day + 1
@@ -61,10 +62,10 @@ def output_summary(period, start, goal)
 	ret = "<a name=\"#{period}\"></a>"
 	while(date <= goal)
 		if(period == 'monthly') then
-			fn = sprintf("summary/%04d%02d", date.year, date.month)
+			fn = sprintf("summary/%04d%02d-", date.year, date.month)
 			title = sprintf("%04d%02d", date.year, date.month)
 		else
-			fn = sprintf("summary/%04d", date.year)
+			fn = sprintf("summary/%04d-", date.year)
 			title = date.year.to_s
 		end
 
