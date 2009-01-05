@@ -88,8 +88,12 @@ end
 
 def get_summary(period, start, goal)
   date = start
+  year = nil
   while(date <= goal)
     print "#{date.to_s}\n"
+    connect_raw(date.year) if year != date.year
+    year = date.year
+
     cur_date = date
     next_date = date = (period == 'monthly' ?
                         date >> 1 :

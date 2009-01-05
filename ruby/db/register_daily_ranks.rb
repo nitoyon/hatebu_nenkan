@@ -36,7 +36,11 @@ print("start date: #{start_date}\n")
 print("quite: #{$quite ? 'yes' : 'no'}\n")
 start_date = Date.parse(start_date)
 
+year = nil
 start_date.upto(Date.today - 1) do |date|
+  connect(date.year) if date.year != year
+  year = date.year
+  
   date_str = date.strftime("%Y-%m-%d")
   ranks = Sql::Dailyrank.find_by_date(date_str)
   if !ranks.nil? then
