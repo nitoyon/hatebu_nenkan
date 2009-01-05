@@ -27,7 +27,7 @@ class EntrySchema < ActiveRecord::Migration
       t.column :entry_id, :integer, :null => false
       t.column :user, :string, :null => false
       t.column :time, :date, :null => false
-      t.column :commented, :boolean
+      t.column :comment, :string
     }
     add_index :bookmarks, :entry_id
 
