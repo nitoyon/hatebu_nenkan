@@ -10,7 +10,7 @@ require 'kconv'
 class Entry
   def initialize(url)
     @url = url
-    @cache = Entry.get_cache_filename(url)
+    #@cache = Entry.get_cache_filename(url)
     @loaded = false
     @using_cache = false
   end
@@ -18,7 +18,7 @@ class Entry
   attr_accessor :url, :cache, :title, :time, :bid, :bookmarks, :loaded, :using_cache
 
   def load(time = nil)
-    load_cache
+    #load_cache
     @using_cache = true
 
     time = time || Time.local(2000, 1, 1)
@@ -41,7 +41,8 @@ class Entry
         
         doc = REXML::Document.new(str)
         title = REXML::XPath.first(doc, "//channel/title")
-        if title == nil then
+        link = REXML::XPath.first(doc, "//channel/link")
+        if link == nil or link.text != @url or title == nil then
           @time = Time.now # hash bug? ex) http://b.hatena.ne.jp/tetsu23/%e5%9c%b0%e5%9b%b3/ 
           return
         end
@@ -93,9 +94,9 @@ class Entry
       @bookmarks = []
     end
 
-    File.open(@cache, "w") {|f|
-      f.puts self.dump
-    }
+    #File.open(@cache, "w") {|f|
+    #  f.puts self.dump
+    #}
   end
 
   def load_cache

@@ -33,7 +33,7 @@ class DailyRank
         end
       }
     }
-    self::save_to_cache if @entries.length > 0
+    #self::save_to_cache if @entries.length > 0
     @entries
   end
 
