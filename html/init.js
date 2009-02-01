@@ -88,11 +88,9 @@ var Init = {
 		setTimeout(function(){
 			Doc.init();
 			Init.showYearlyAndMonthly(true);
-			setTimeout(function(){
-				if(Init.loading && Init.loading.parentNode){
-					Init.loading.parentNode.removeChild(Init.loading);
-				}
-			}, 3000);
+			if(Init.loading && Init.loading.parentNode){
+				Init.loading.parentNode.removeChild(Init.loading);
+			}
 		}, 0);
 	}
 };
