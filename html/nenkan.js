@@ -173,9 +173,26 @@ var Doc = {
 	aboutList: null,
 
 	init: function(){
-		this.aboutList = $("#about").remove().get();
-		this.monthList = $("#main > div.monthly").remove().get();
-		this.yearList = $("#main > div.yearly").remove().get();
+		var elm = document.getElementById("about");
+		elm.parentNode.removeChild(elm);
+		this.aboutList = [elm];
+
+		this.monthList = [];
+		this.yearList = [];
+		elm = document.getElementById("main").firstChild;
+		while(elm){
+			var next = elm.nextSibling;
+			if(elm.nodeName == "DIV"){
+				if(elm.className && elm.className.match(/monthly/)){
+					elm.parentNode.removeChild(elm);
+					this.monthList.push(elm);
+				}else if(elm.className && elm.className.match(/yearly/)){
+					elm.parentNode.removeChild(elm);
+					this.yearList.push(elm);
+				}
+			}
+			elm = next;
+		}
 
 		BoxView.init();
 		BoxDetailView.init();
