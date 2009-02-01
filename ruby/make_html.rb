@@ -1,8 +1,18 @@
 require 'cgi'
 require 'date'
+require 'optparse'
 
-date = Date.new(2005, 2)
-thismonth = Date.today - Date.today.day + 1
+start_date = "2005-02-01"
+end_date = Date.today.to_s
+opt = OptionParser.new
+opt.on('-s=VAL', '--start=VAL', 'Start date') {|v| start_date = v}
+opt.on('-e=VAL', '--end=VAL', 'End date') {|v| end_date = v}
+opt.parse! ARGV
+
+date = Date.parse(start_date)
+end_date = Date.parse(end_date)
+
+thismonth = Date.new(end_date.year, end_date.month, 1)
 thisyear = Date.new(thismonth.year, 1, 1)
 
 count = 1
