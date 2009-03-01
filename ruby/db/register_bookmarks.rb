@@ -88,8 +88,10 @@ start = 2005
 count = 9999999
 modified = Time.at(0)
 
+start_date = Date.today
+
 opt = OptionParser.new
-opt.on('-s=VAL', '--start_year=VAL', 'Start year') {|v| start = v.to_i}
+opt.on('-s=VAL', '--start_date=VAL', 'Start date') {|v| start = Date.parse(v)}
 opt.on(nil, '--from_file', 'Not from db, from file') {|v| $from_file = v}
 opt.on('-c=VAL', '--count=VAL', 'Count') {|v| count = v.to_i}
 opt.on('-m=VAL', '--modified=VAL', 'If modified since') {|v| modified = Time.parse(v)}
@@ -101,12 +103,12 @@ print("start year: #{start}\n")
 print("modified:   #{modified.to_s}\n")
 print("\n")
 
-def get_entries_in(year)
+def get_entries_in(start)
   if !$from_file then
-    entries = $db.execute(<<SQL, Date.new(year).to_s, Date.new(year + 1).to_s).flatten
+    entries = $db.execute(<<SQL, start).flatten
 select E.url from dailyranks DR
     join entries E on DR.entry_id=E.id
-    where DR.date >= date(?) and DR.date < date(?)
+    where DR.date >= date(?)
     group by DR.entry_id order by E.id;
 SQL
   else
@@ -121,10 +123,10 @@ SQL
   entries = entries.uniq
 end
 
-start.upto(Date.today.year) do |year|
+start.year.upto(Date.today.year) do |year|
   init_db_statement(year)
 
-  get_entries_in(year).each do |url|
+  get_entries_in(start).each do |url|
     _start = Time.now
 
     print "#{url}\t"
