@@ -46,7 +46,7 @@ class Entry
           @time = Time.now # hash bug? ex) http://b.hatena.ne.jp/tetsu23/%e5%9c%b0%e5%9b%b3/ 
           return
         end
-        title = title.text.chomp
+        title = title.text.gsub(/[\n\t]/, '')
         
         bid = REXML::XPath.first(doc, "//rdf:li/@rdf:resource")
         bid = if bid && /#bookmark-(\d+)/ =~ bid.to_s then $1 else nil end
