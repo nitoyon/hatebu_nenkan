@@ -233,7 +233,7 @@ var BoxView = {
 		}else if(lh.match(/^[0-9]{6}$/)){
 			this.setType('monthly', parseInt(lh.substr(0, 4)), parseInt(lh.substr(4), 10));
 		}else{
-			this.setType('yearly', 2005 + Doc.yearList.length - 1);
+			this.setType('monthly', 2005 + Math.floor((Doc.monthList.length - 1) / 12), 1 + (Doc.monthList.length - 2 % 12));
 		}
 	},
 
