@@ -42,9 +42,13 @@ class Entry
         doc = REXML::Document.new(str)
         title = REXML::XPath.first(doc, "//channel/title")
         link = REXML::XPath.first(doc, "//channel/link")
-        if link == nil or link.text != @url or title == nil then
+
+        # handle error
+        #  - url check: lazy check (case insensitive)
+        #               %e5 == %E5
+        if link == nil or !@url.casecmp(link.text) or title == nil then
           @time = Time.now # hash bug? ex) http://b.hatena.ne.jp/tetsu23/%e5%9c%b0%e5%9b%b3/ 
-          return
+          raise "unknown error"
         end
         title = title.text.gsub(/[\n\t]/, '')
         
@@ -88,6 +92,7 @@ class Entry
         }.reverse
       }
     rescue
+      print "error: #$!\n"
       @bid = ''
       @title = ''
       @time = Time.now
