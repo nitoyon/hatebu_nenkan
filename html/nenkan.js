@@ -82,7 +82,13 @@ SITES = {
 	'guideline.livedoor.biz': '【2ch】日刊スレッドガイド',
 	'labaq.com': 'らばQ',
 	'urasoku.blog106.fc2.com': 'ハムスター速報　２ろぐ',
-	'ascii.jp': 'ASCII.jp'
+	'ascii.jp': 'ASCII.jp',
+	'b.hatena.ne.jp': 'はてなブックマークニュース',
+	'jp.techcrunch.com': 'TechCrunch Japan',
+	'hamusoku.com': 'ハムスター速報',
+	'kachibito.net': 'かちびと.net',
+	'www.google.com': 'Google',
+	'r.nanapi.jp': 'ナナピ'
 };
 
 
