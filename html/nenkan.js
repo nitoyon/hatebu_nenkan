@@ -88,7 +88,11 @@ SITES = {
 	'hamusoku.com': 'ハムスター速報',
 	'kachibito.net': 'かちびと.net',
 	'www.google.com': 'Google',
-	'r.nanapi.jp': 'ナナピ'
+	'r.nanapi.jp': 'ナナピ',
+	'togetter.com': 'Togetter',
+	'alfalfalfa.com': 'アルファルファモザイク',
+	'www.publickey1.jp': 'Publickey',
+	'www.lastday.jp': 'Last Day. jp'
 };
 
 
